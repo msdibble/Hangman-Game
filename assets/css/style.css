@@ -1,0 +1,28 @@
+
+body {
+    height: 100%;
+    width: 100%;
+    background-image: url(game-thrones-logo.jpg);
+    background-size: cover;
+}
+
+.container {
+    text-align: center;
+    font-family: cursive;
+    color: white;
+    font-size: 21px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+
+#audio-box {
+    position: fixed;
+    bottom: 0;
+}
+
+.game {
+    bottom: 0px;
+}

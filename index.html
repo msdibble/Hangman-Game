@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GAME OF HANGMAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
+   
+</head>
+<body>
+    
+<div class = "container" >
+    <!-- Game Introduction and Instructions-->
+        <h1>Welcome to the Game of Hangman where you either win or you die when you play!!</h1>
+        
+        <br>
+        
+        <p>To start the game, press any letter on the keyboard.</p>
+        <p>Good luck! For the night is dark and full of terrors!</p>
+       
+        <br>
+    <!-- End of Game of Intro and beginning of stats-->
+        <div id="stats">
+            <h2>LIVES REMAINING: <span id="livesLeft"></span></h2>
+            <br>
+            <h2>USED LETTERS: <span id="usedLetters"></span></h2>
+        </div>
+    <!--End of stats-->
+        <br>
+    <!-- Game section-->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    <div class="game">
+        <p>GUESS THE WORD: <span id="randomWord"></span>_ _ _ _<p>
+    </div>
+
+
+
+</div>
+
+<div id="audio-box">
+    <audio controls>
+        <source src="assets\music\Game of Thrones.mp3">
+    </audio>
+</div>
+    
+
+   
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>
