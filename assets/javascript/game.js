@@ -1,78 +1,96 @@
 // Global variables
 $(document).ready(function() {
-var availableLetters = 'abcdefghijklmnopqrstuvwxyz';
+
 var words = ["dragon", "direwolf", "targaryen", "stark", "westeros", "wildfire", "wildlings", "greyscale", "dothraki"];
 var winMessage = "Congratulations! You are now King/Queen of the Andals and the First Men, protector of the seven kingdoms! Long may you reign!";
 var loseMessage = "Game over. And now your watch has ended.";
 var maxLives = 10;
-
-
-// Random word selected for the game
+    
+    
+// Random word selected for the game 
 var selectedWord = words[Math.floor(Math.random() * words.length)];
     console.log(selectedWord);
 
+var guessedLetters = [];
+for (var i = 0; i < selectedWord.length; i++) {
+    guessedLetters.push("_");
+}
+for (var i=0; i < guessedLetters.length; i++) {
+    document.getElementById("correctLetters").innerHTML += guessedLetters[i];
+}
+    
 // Selected word for the game is split
 var wordSplit;
     wordSplit = selectedWord.split("");
+    
+var letters = [];
 
-var letters = "";
-var usedLetters = [];
-var selectedWord = "";
 var wordLength = selectedWord.length;
-var underscores = [];
 
+    
+    
 //Playing the Game:
-
-// Number of lives starts at 10 by pressing any key
-
+    
+// Number of lives starts at 10 by pressing any key. Only letters can be pressed.
+    
     document.onkeypress = function (event) {
+        var inp = String.fromCharCode(event.keyCode);
         var playerGuess = event.key;
-        var letterIndex = wordSplit.indexOf(playerGuess)
-        console.log(wordSplit);
-        console.log(playerGuess);
-        console.log(wordSplit.indexOf(playerGuess))
-    
-    // Incorrect letters that have already been used appear next to "USED LETTERS:"
-        
-    if (letterIndex < 0) {
-        console.log("incorrectLetter");
-        usedLetters.push(playerGuess);
-        console.log(usedLetters);
-        document.getElementById("lettersUsed").innerHTML = usedLetters;
-            console.log(maxLives);
-
-    // Every time an incorrect letter is selected, the number of lives decreases by 1.
-
-        for (var i=0; i < maxLives; i++) {
-            maxLives = document.getElementById("livesLeft").innerHTML = maxLives - 1;
-            }
+        var letterIndex = wordSplit.indexOf(playerGuess);
+        console.log(letterIndex);
+        if (/[0-9-_]/.test(inp)) {
+            alert("Please enter in a letter only");
         }
-
+    
         else {
+                var userLetters = document.getElementById("incorrectLetters").innerHTML;
+                if (!letters.includes(playerGuess)) {
+                    
+                    if (selectedWord.includes(playerGuess)) {
 
+                        var guessIndex = selectedWord.indexOf(playerGuess);
+                        while (guessedLetters[guessIndex] == playerGuess) {
+                            var restOfTheWord = selectedWord.substring(guessIndex + 1, selectedWord.length);
+                            guessIndex += restOfTheWord.indexOf(playerGuess) + 1;
+                        }
+                        guessedLetters[guessIndex] = playerGuess;
+
+                        document.getElementById("correctLetters").innerHTML = "";
+                        for (var i=0; i < guessedLetters.length; i++) {
+                            document.getElementById("correctLetters").innerHTML += guessedLetters[i];
+                        }
+
+                        if (!guessedLetters.includes("_")) {
+                            alert(winMessage);
+                        }
+
+                    } else {
+
+                        letters.push(playerGuess);
+                        document.getElementById("incorrectLetters").innerHTML = letters;
+    
+                        for (var i=0; i < 1; i++) {
+                            maxLives = document.getElementById("livesLeft").innerHTML = maxLives - 1;
+        
+                        }
+        
+                        if (maxLives < 0) {
+                            document.getElementById("livesLeft").innerHTML = 0;
+                            alert(loseMessage);
+                        }
+
+                    }
+
+                }     
+            
         }
     }
 
-    function newGame () {
-        document.getElementById("livesLeft") = maxLives;
-    }
-    
-// Player guesses which letters are in the selected word
-
-// If letter is in word, number of lives stays the same ("if" statement)
-
-// If letter is not in word, number of lives decreases by 1 ("else" statement)
-
-// If user guesses all letters in the word before lives reaches 0, user wins and the game is over ("if" statement)
-
-
-// If user not guess all letters in word before lives reaches 0, user loses and the game is over ("else" statement)
 
 
 }
-
+    
 )
-
 
 
 
